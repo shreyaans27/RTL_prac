@@ -1,0 +1,9 @@
+
+rtlenv/
+__pycache__/
+sim_build/
+*.vcd
+*.fst
+results.xml
+*.pyc
+.DS_Store
