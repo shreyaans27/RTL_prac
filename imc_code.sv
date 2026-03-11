@@ -48,7 +48,7 @@ module top (
             pay_upper <= 8'd0;
             msg_idx <= 2'd0;
             hdr_concat <= 32'd0;
-            all_match <= 1'b1;
+            all_match <= 1'b1;                      // WHY ?? == usign and chain to determine if all messages match, so start with 1 and if any fail it becomes 0
             out_valid <= 1'b0;
             out_trigger <= 1'b0;
             out_header <= 32'b0;
@@ -68,7 +68,7 @@ module top (
                     first_cycle <= 1'b1;
                     
                     case(msg_idx)
-                        2'd0: msg_match = (pay_full == MATCH_DATA_1);
+                        2'd0: msg_match = (pay_full == MATCH_DATA_1);           // Message match is  blocking assignmnet need it to in the same cycle to determine all match, if we use non blocking it will update in the next cycle and we will be checking the old value of msg_match
                         2'd1: msg_match = (pay_full == MATCH_DATA_2);
                         2'd2: msg_match = (pay_full == MATCH_DATA_3);
                         2'd3: msg_match = (pay_full == MATCH_DATA_4); 
